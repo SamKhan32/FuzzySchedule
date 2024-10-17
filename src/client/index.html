@@ -1,0 +1,129 @@
+<!Doctype html>
+<html>
+<head>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+<script>
+        // Initialize map after the page is fully loaded
+        window.onload = function() {
+            // Create the map and set the view to Charlotte
+            var map = L.map('map').setView([35.3076, -80.7355], 13);
+			
+            // Add a tile layer to the map (OpenStreetMap tiles)
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'}).addTo(map);
+		}
+	function usePredefined() {
+		//window.alert("Selected!");
+		document.getElementById("map").style.display= "none";
+		document.getElementById("log-in-box").style.display = "block";
+	}
+	function sendCreds() {
+		var username = document.get("username").value;
+		var password = document.get("password").value;
+		window.alert(username + " " + password);
+	}
+</script>
+<style>
+	body {
+		display: gird;
+		background: linear-gradient(to right, #6600cc 25%, #cc00ff 100%);
+        justify-content: center;   /* Center horizontally */
+        align-items: center;       /* Center vertically */
+        height: 100vh;             /* Full viewport height */
+        margin: 0;                 /* Remove default margin */
+	}
+
+	h1 {
+		display: gird;
+		color: white;
+		padding-left: 10px;
+		
+	}
+	p {
+		color: white;
+		padding-left: 20px;
+	}
+
+	button {
+		cursor: pointer;
+		display: flex;
+        justify-content: center;   /* Center horizontally */
+        align-items: left;       /* Center vertically */
+        margin: 5;                 /* Remove default margin */
+		justify-items: center;
+	}
+	.map-container {
+        width: 100%;    /* Full width to center properly */
+		padding-left: 20px;
+
+		
+	}
+	/* Map container */
+	#map {
+		width: 600px;
+		height: 600px;
+	}
+	#log-in-box {
+		
+		width: 600px;
+        height: 600px;
+        background-color: white;
+        display: none;
+        padding: 20px;
+        box-sizing: border-box;
+		
+	}
+	/* UNCC Button */
+	.UNCC-button {
+		display: inline-block;
+            font-weight: bold;
+            color: white;
+            background-color: black;
+            padding: 5px 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;	
+			}
+	.UNCC-button:active {
+		background-color: rgb(36, 174, 96);
+		transform: translateY(4px);
+
+	}
+	label {
+		color:black;
+		font-weight: bold;
+	}
+	p.textOnWhiteBG {
+		color: black;
+		padding-left: 20px;
+	}
+</style>
+</head>
+<h1>Fuzzy Schedule Maker</h1>
+<body>
+    <!-- Centered map container -->
+    <div class="map-container">
+        <div id="map"></div>
+    </div>
+	<!-- Swappable Login Box-->
+	<div class = "map-container"> 
+		<div id = "log-in-box">
+		<form action="/submit" method="POST">
+		<p class="textOnWhiteBG">Please enter your life360 credentials</p>
+		<label>Username</label>
+		<input type="text" id ="username"/>
+		<br />
+		<label>Password</label>
+		<input type ="password" id="password"/>
+		<br />
+		<input type="submit" value="Enter" />
+		</div>
+		</form>
+	<!-- Alternate Map Use-->
+	<!-- <p> Or, just use our predefined <span style="font-weight: bold; color: black">UNCC map</span></p> -->
+	<p>Or, just use our predefined 
+        <button class="UNCC-button" onClick="usePredefined()">UNCC MAP</button>.</p>
+</body>
+</html>
